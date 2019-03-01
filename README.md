@@ -51,18 +51,50 @@ Route::namespace('API')->name('api.')->group(function() {
 
 ````
 #### Foram criado 6 endpoints com 5 verbos diferentes para a interação:
-- GET, que pede ao servidor o recurso;
-- POST, que pede ao servidor que crie um recurso novo;
-- DELETE, que pede ao servidor que apague um recurso;
-- PUT, que pede ao servidor a atualização ou edição de um recurso;
-- PATCH, que aplica modificações parciais a um recurso (No caso modificando a variável deleted_at no BD).
+- _GET_, que pede ao servidor o recurso;
+- _POST_, que pede ao servidor que crie um recurso novo;
+- _DELETE_, que pede ao servidor que apague um recurso;
+- _PUT_, que pede ao servidor a atualização ou edição de um recurso;
+- _PATCH_, que aplica modificações parciais a um recurso (No caso modificando a variável deleted_at no BD).
 
 #### Utilização dos endpoints:
-Ao acessar http://localhost:8000/api/articles
+- Ao acessar http://localhost:8000/api/articles utilizando o verbo _GET_, o servidor local retornará um _JSON_ com tudo que tem no BD
+
 ````php
 Route::namespace('API')->name('api.')->group(function() {
       Route::get('/articles', 'ArticleController@index')->name('articles_index');
 });
+````
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _GET_, o servidor local retornará um _JSON_ com o ID do artigo especificado na _URL_, caso o id informado exista
+
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::get('/articles/{id}', 'ArticleController@show')->name('articles_show');
+});
+````
+- Ao acessar http://localhost:8000/api/articles utilizando o verbo _POST_, o servidor cria uma nova tupla no BD, caso todos parâmetros passados estejam corretos
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::post('/articles', 'ArticleController@store')->name('articles_store');
+});
+````
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _PUT_, o servidor atualiza uma informação no BD de acordo com o ID passado na _URL_, podendo passar um ou mais parâmetros para edição
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::put('/articles/{id}', 'ArticleController@update')->name('articles_update');
+});
+````
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _DELETE_, o servidor fará um softdelete com o ID informado ou seja  a informação não é completamente deletada do BD, evitando que o BD que fique em um estado inconsistente e podendo ser recuperada posteriomente
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::delete('/articles/{id}', 'ArticleController@delete')->name('articles_delete');
+});
+````
+
+*BD->Banco de dados
+
+
+
 
 
 
