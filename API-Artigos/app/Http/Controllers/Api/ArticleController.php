@@ -92,8 +92,9 @@ class ArticleController extends Controller
 
     public function restore($id)
     {
-      //criar um validação caso ocorra algum erro mostrar a Exception
+
       try {
+        // Procurar entre os arquivos que tenham o deleted_at diferente de null
         $article = $this->article->withTrashed()->find($id)->restore();
 
         return response()->json(['msg' => 'Artigo restaurado com sucesso!'], 200);
