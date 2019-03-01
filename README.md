@@ -5,7 +5,7 @@ Teste pratico para vaga PHP Back-end Developer | DialHost
 Laravel Versão (v5.8.0)
 
 ## Requerimentos pedidos
-- [✔]  criar uma simples API REST utilizando framework Laravel
+- [✔]  Criar uma simples API REST utilizando framework Laravel
 - [✔]  Operação de CRUD
 - [✔]  Disponibilizar o código no github
 - [✔]  Endpoint e explicações de utilização
@@ -14,3 +14,8 @@ Laravel Versão (v5.8.0)
 - [✔]  O prazo de 3 dias.
 
 ## Fluxo de codificação
+
+Criação da migration com a tabela articles ->
+````php
+php artisan make:migration create_table_articles --create=articles 
+````
