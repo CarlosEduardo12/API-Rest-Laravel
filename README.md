@@ -15,11 +15,11 @@ Laravel Versão (v5.8.0)
 
 ## Fluxo de codificação
 
-Criando a migration com a tabela articles 
+Criando a migration para a tabela articles 
 ````php
 php artisan make:migration create_table_articles --create=articles 
 ````
-Inicializando as migrations criadas quanto as padrões 
+Inicializando todas as migrations do sistema 
 ````php
 php artisan migrate 
 ````
@@ -58,7 +58,7 @@ Route::namespace('API')->name('api.')->group(function() {
 - _PATCH_, que aplica modificações parciais a um recurso (No caso modificando a variável deleted_at no BD).
 
 #### Utilização dos endpoints:
-- Ao acessar http://localhost:8000/api/articles utilizando o verbo _GET_, o servidor local retornará um _JSON_ com tudo que tem no BD
+- Ao acessar http://localhost:8000/api/articles utilizando o verbo _GET_, o servidor local retorna um _JSON_ com tudo que tem no BD
 
 ````php
 Route::namespace('API')->name('api.')->group(function() {
@@ -84,13 +84,13 @@ Route::namespace('API')->name('api.')->group(function() {
       Route::put('/articles/{id}', 'ArticleController@update')->name('articles_update');
 });
 ````
-- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _DELETE_, o servidor fará um softdelete com o ID informado ou seja  a informação não é completamente deletada do BD, evitando que o BD que fique em um estado inconsistente e podendo ser recuperada posteriormente
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _DELETE_, o servidor fará um _Softdelete_ com o ID informado ou seja  a informação não é completamente deletada do BD, evitando que o BD que fique em um estado inconsistente e podendo ser recuperada posteriormente
 ````php
 Route::namespace('API')->name('api.')->group(function() {
       Route::delete('/articles/{id}', 'ArticleController@delete')->name('articles_delete');
 });
 ````
-- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _PATCH_, o servidor utiliza o ID informado para procurarentre todos artigos que tenham a variável _deleted_at_ diferente de _Null_, caso o ID seja encontrado dentro dos artigos deletados, ele é restaurado.
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _PATCH_, o servidor utiliza o ID informado para procurar entre todos artigos que tenham a variável _deleted_at_ diferente de _Null_, caso o ID seja encontrado dentro dos artigos deletados, ele é restaurado.
 ````php
 Route::namespace('API')->name('api.')->group(function() {
       Route::delete('/articles/{id}', 'ArticleController@delete')->name('articles_delete');
