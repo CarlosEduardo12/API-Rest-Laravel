@@ -55,7 +55,7 @@ class ArticleController extends Controller
     }
 
     public function update(Request $request, $id){
-      //criar um validação caso ocorra alguem erro mostrar a Exception
+      //criar um validação caso ocorra algum erro mostrar a Exception
       try {
         // Atualizar só os dados passados no request e cria um novo artigo
         $articleData = $request->all();
@@ -74,6 +74,38 @@ class ArticleController extends Controller
       }
     }
 
+    public function delete(Article $id)
+    {
+      //criar um validação caso ocorra algum erro mostrar a Exception
+      try {
+        $id->delete();
+
+        return response()->json(['msg' => 'Artigo removido com sucesso!'], 200);
+
+      } catch (\Exception $e) {
+        if(config('app.debug')) {
+          return response()->json($e->getMessage(),  500);
+        }
+
+      }
+    }
+
+    public function restore(Article $article, $id)
+    {
+      //criar um validação caso ocorra algum erro mostrar a Exception
+      try {
+        $article = $this->article->find($id);
+        $article->restore();
+
+        return response()->json(['msg' => 'Artigo restaurado com sucesso!'], 200);
+
+      } catch (\Exception $e) {
+        if(config('app.debug')) {
+          return response()->json($e->getMessage(),  201);
+        }
+
+      }
+    }
 
 
 }
