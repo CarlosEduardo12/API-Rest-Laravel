@@ -90,18 +90,17 @@ class ArticleController extends Controller
       }
     }
 
-    public function restore(Article $article, $id)
+    public function restore($id)
     {
       //criar um validação caso ocorra algum erro mostrar a Exception
       try {
-        $article = $this->article->find($id);
-        $article->restore();
+        $article = $this->article->withTrashed()->find($id)->restore();
 
         return response()->json(['msg' => 'Artigo restaurado com sucesso!'], 200);
 
       } catch (\Exception $e) {
         if(config('app.debug')) {
-          return response()->json($e->getMessage(),  201);
+          return response()->json($e->getMessage(),  500);
         }
 
       }
