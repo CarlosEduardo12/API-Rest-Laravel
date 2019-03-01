@@ -29,11 +29,31 @@ class ArticleController extends Controller
     public function show($id){
       //encontrar o artigo pelo id
       $article = $this->article->find($id);
-      //verificar se o artigo existe
-      $msg=['msg' => ' Artigo nao Encontrado -  404'];
+      //verificar se o artigo existe, caso nao exista mostrar msg de erro
+      $msg = ['msg' => ' Artigo nao Encontrado -  404'];
       if(! $article) return response()->json($msg, 404);
 
       return response()->json($article);
+    }
+
+    public function store(Request $request){
+      //criar um validação caso ocorra alguem erro mostrar a Exception
+    try {
+      // Salvar todos os dados passados no request e cria um novo artigo
+      $articleData = $request->all();
+      $this->article->create($articleData);
+
+      $msg = ['msg' => ' Artigo cadastrado com Sucesso - 201'];
+      return response()->json($msg, 201);
+      // captura a Exception
+    } catch (\Exception $e) {
+      if(config('app.debug')) {
+        return response()->json($e->getMessage(), 500);
+      }
+
+    }
+
+
     }
 
 }
