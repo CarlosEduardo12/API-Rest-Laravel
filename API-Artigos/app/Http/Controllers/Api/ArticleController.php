@@ -38,22 +38,42 @@ class ArticleController extends Controller
 
     public function store(Request $request){
       //criar um validação caso ocorra alguem erro mostrar a Exception
-    try {
-      // Salvar todos os dados passados no request e cria um novo artigo
-      $articleData = $request->all();
-      $this->article->create($articleData);
+      try {
+        // Salvar todos os dados passados no request e cria um novo artigo
+        $articleData = $request->all();
+        $this->article->create($articleData);
 
-      $msg = ['msg' => ' Artigo cadastrado com Sucesso - 201'];
-      return response()->json($msg, 201);
-      // captura a Exception
-    } catch (\Exception $e) {
-      if(config('app.debug')) {
-        return response()->json($e->getMessage(), 500);
+        $msg = ['msg' => ' Artigo Cadastrado com Sucesso - 201'];
+        return response()->json($msg, 201);
+        // captura a Exception
+      } catch (\Exception $e) {
+        if(config('app.debug')) {
+          return response()->json($e->getMessage(), 500);
+        }
+
       }
+    }
 
+    public function update(Request $request, $id){
+      //criar um validação caso ocorra alguem erro mostrar a Exception
+      try {
+        // Atualizar só os dados passados no request e cria um novo artigo
+        $articleData = $request->all();
+        $article     = $this->article->find($id);
+
+  			$article->update($articleData);
+
+        $msg = ['msg' => ' Artigo Atualizado com Sucesso - 201'];
+        return response()->json($msg, 201);
+        // captura a Exception
+      } catch (\Exception $e) {
+        if(config('app.debug')) {
+          return response()->json($e->getMessage(), 500);
+        }
+
+      }
     }
 
 
-    }
 
 }
