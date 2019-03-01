@@ -15,13 +15,26 @@ Laravel Versão (v5.8.0)
 
 ## Fluxo de codificação
 
-Criação da migration com a tabela articles ->
+Criando a migration com a tabela articles 
 ````php
 php artisan make:migration create_table_articles --create=articles 
 ````
+Inicializando as migrations criadas quanto as padrões 
+````php
+php artisan migrate 
+````
 
-Criação de artigos fakers para população do BD usando helpers do proprio Laravel, como _Factory_ e _Seeder_
+Criando artigos fakers para população do BD usando helpers do proprio Laravel, como _Factory_ e _Seeder_
 ````php
 php artisan make:factory ArticlesFactory
 php artisan make:seeder ArticlesTableSeeder 
 ````
+
+Geranndo as _Seeder_, _Model_ e _Controller_
+````php
+php artisan db:seed
+php artisan make:controller Api/ArticleController
+php artisan make:model Article
+````
+
+
