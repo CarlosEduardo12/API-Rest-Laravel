@@ -90,6 +90,13 @@ Route::namespace('API')->name('api.')->group(function() {
       Route::delete('/articles/{id}', 'ArticleController@delete')->name('articles_delete');
 });
 ````
+- Ao acessar http://localhost:8000/api/articles/1 utilizando o verbo _PATCH_, o servidor ultiza o ID informado e com todos artigos que tenham a variável _deleted_at_ diferente de _Null_, caso o ID seja encontrado dentro dos artigos deletados, ele é restaurado.
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::delete('/articles/{id}', 'ArticleController@delete')->name('articles_delete');
+});
+````
+
 
 *BD->Banco de dados
 
