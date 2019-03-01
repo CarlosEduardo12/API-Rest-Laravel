@@ -57,5 +57,13 @@ Route::namespace('API')->name('api.')->group(function() {
 - PUT, que pede ao servidor a atualização ou edição de um recurso;
 - PATCH, que aplica modificações parciais a um recurso (No caso modificando a variável deleted_at no BD).
 
+#### Utilização dos endpoints:
+Ao acessar http://localhost:8000/api/articles
+````php
+Route::namespace('API')->name('api.')->group(function() {
+      Route::get('/articles', 'ArticleController@index')->name('articles_index');
+});
+
+
 
 
