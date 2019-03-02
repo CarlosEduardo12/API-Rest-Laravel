@@ -16,10 +16,10 @@ class ArticleCollection extends JsonResource
     public function toArray($request)
     {
       return [
-
+        'id'        =>$this->id,
         'titulo'    => $this->titulo,
         'descricao' => $this->descricao,
-        'data'  => $this->data,
+        'data'      => $this->data,
         'href'      =>[
             'conteudo'=> route('api.articles_show', $this->id)
         ]
