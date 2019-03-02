@@ -50,7 +50,7 @@ Route::namespace('API')->name('api.')->group(function() {
 });
 
 ````
-#### Foi criado 1 endpoint com 5 verbos diferentes para a interação:
+#### Foi criado 1 endpoint _(articles)_ com 5 verbos diferentes para a interação:
 - _GET_, que pede ao servidor o recurso;
 - _POST_, que pede ao servidor que crie um recurso novo;
 - _DELETE_, que pede ao servidor que apague um recurso;
@@ -97,8 +97,35 @@ Route::namespace('API')->name('api.')->group(function() {
 });
 ````
 
+## API Resource
+
+#### Porque utilizar API Resource?
+Ao criar uma API, você pode precisar de uma camada de transformação que fica entre os modelos do Eloquent e as respostas do JSON que são realmente retornadas aos usuários do seu aplicativo. As classes de recursos do Laravel permitem transformar seus modelos e coleções de modelos em JSON de maneira expressiva e fácil. _Documentação Laravel versão 5.8_
+
+#### Como foi utilizada?
+Foi criado um Resource e uma Collection com ambos estendendo a classe JsonResource
+````php
+php artisan make:resource Article/ArticleResource
+php artisan make:resource Article/ArticleCollection
+````
+Na classe _ArticleResource_ é mostrado o conteúdo relevante do BD, ocultando apenas informações importantes para o desenvolvedor como _deleted_at_ e os _timestamps_
+
+Na classe _ArticleCollection_ é mostrado as informações essências do artigo, seguido de um link com mais detalhes do mesmo
+
+## Melhorias para o projeto
+- Passaport - O Laravel já facilita a autenticação por meio de formulários de login tradicionais, mas e as APIs? As APIs geralmente usam tokens para autenticar usuários e não mantêm o estado da sessão entre as solicitações. O Laravel facilita a autenticação da API usando o Laravel Passport, que fornece uma implementação completa do servidor OAuth2 para seu aplicativo Laravel em questão de minutos. O Passport é construído no topo do servidor da Liga OAuth2, mantido por Andy Millington e Simon Hamp. _Documentação Laravel versão 5.8_
+
+- Tratar melhor as _Exception_ - O usuário não deve receber mensagens de erros estensas e sim se a ação foi bem sucedida ou não.
+
+- Validação - O envio de um _post_ pode ser tratado retornando uma _exception_ do não preenchimento de um campo obrigátorio.
+
 
 *BD->Banco de dados
+##
+#
+##### Referências
+Laravel Documentation. Disponível em: 
+<https://laravel.com/docs/5.8>
 
 
 
