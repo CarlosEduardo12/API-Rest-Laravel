@@ -50,7 +50,7 @@ Route::namespace('API')->name('api.')->group(function() {
 });
 
 ````
-#### Foram criado 6 endpoints com 5 verbos diferentes para a interação:
+#### Foi criado 1 endpoint com 5 verbos diferentes para a interação:
 - _GET_, que pede ao servidor o recurso;
 - _POST_, que pede ao servidor que crie um recurso novo;
 - _DELETE_, que pede ao servidor que apague um recurso;
