@@ -121,6 +121,11 @@ Na classe _ArticleCollection_ é mostrado as informações essências do artigo,
 
 
 *BD->Banco de dados
+##
+#
+##### Referências
+Laravel Documentation. Disponível em: 
+<https://laravel.com/docs/5.8>
 
 
 
