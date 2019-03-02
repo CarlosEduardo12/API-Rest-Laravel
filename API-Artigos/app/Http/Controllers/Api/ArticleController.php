@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Http\Resources\Article\ArticleResource;
+use App\Http\Resources\Article\ArticleCollection;
 
 class ArticleController extends Controller
 {
@@ -22,18 +24,19 @@ class ArticleController extends Controller
 
     public function index(){
       // Retorna todos os dados da tabela artigo com no max 10 por pagina
-      return response()->json($this->article->paginate(10));
+      return ArticleCollection::collection(Article::paginate(10));
 
     }
 
     public function show($id){
       //encontrar o artigo pelo id
       $article = $this->article->find($id);
+      $articleTransformation = new ArticleResource($article);
       //verificar se o artigo existe, caso nao exista mostrar msg de erro
       $msg = ['msg' => ' Artigo nao Encontrado -  404'];
       if(! $article) return response()->json($msg, 404);
 
-      return response()->json($article);
+      return response()->json($articleTransformation);
     }
 
     public function store(Request $request){
